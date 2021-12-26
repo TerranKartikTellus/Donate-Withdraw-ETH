@@ -1,0 +1,109 @@
+
+
+ Private blockchain anf truffle
+ migrating Faucet to blockchain
+ website will contain > json file (ABI: application binary interface) 
+         with meta info about our smart contract that will be deployed on blockchain
+ to communicate to the smart contract deployed on blockchain,
+ we need
+ meta data of smart contract that will store
+        1. on which address smart contract reside 0x23jbh423jh423hj4v2hj334verwkj 
+        2. byte code
+ SO
+ FaucetContract.sol <converted/compiled to> json(ABI) file(which will contain byte code and metadata) <byte code is sent/migrated to> blockchain
+ STEP 1 : write the smart contract FaucetContract.sol in contracts folder
+        // contract name = contract contractName{}
+ STEP 2 : in command line 'truffle compile' <> compile .sol to .json(which will contain byte code)
+ STEP 3 : Specify migration in migration folder with a=name "2_faucet_migration.js"
+        
+                            // give access tosmart contract byte code
+                            // const FaucetContract = artifact.require("Faucet");
+                            // 
+                            // module.exports = function (deployer){
+                                      // deployer.deploy(FaucetContract)
+                            // }
+ STEP 4 : runc "truffle migrate"
+---
+web3.js : collection pf libs that allow interaction with local or remote ETH node using protocols [http,ipc,webSocket]
+
+under terminal
+          "truffle console"
+
+get instance of ABI of smart-contract   
+       syntax : const instance = new web3.eth.Contract(ABI of contract , address of smart contract in blockchain)
+          const instance = new web3.eth.Contract(Faucet.abi, "0x2B437EC1E890E2858Cd4BE19c0A8143e7d7BcaE5")
+
+       get address from ganache/contracts/Faucet/Address
+
+not lets access variable funds data from smart-contract instance
+       (here, funds() function is created by solidity to return data in variable "funds")
+       (here, counter() function is created by solidity to return data in variable "counter")
+       (here, test() function is created by solidity to return data in variable "test")
+       
+       const funds = await instance.methods.funds().call();
+       const counter = await instance.methods.counter().call()
+       const test = await instance.methods.test().call()
+
+       funds
+              output: 1000
+       counter
+              output: -20
+       test
+              output: 4294967295
+---
+get ether into smart-contract
+"
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.4.22 <0.9.0;
+
+contract Faucet{
+ 
+ function addFunds() external payable {
+
+ }
+}
+"
+
+now migrate it to blockchain 
+       "truffle migrate --reset"
+         METHOD 1                   
+                                   "truffle console"
+                                   "const instance = await Faucet.deployed()"
+                                   "instance.addFunds({value : "2000000000000000000"})"
+
+                                   above value is not in ether but in wei.
+
+                            output: 
+                                   {
+                                     tx: '0xd17f3b2fb584d59ba673f594010a07264bea53414fca28675f26a572d1f1cbd7',
+                                     receipt: {
+                                       transactionHash: '0xd17f3b2fb584d59ba673f594010a07264bea53414fca28675f26a572d1f1cbd7',
+                                       transactionIndex: 0,
+                                       blockHash: '0x09dd6cc9e3e45fb076377a6a72040c0c5952d269de0b1b0441106e321fbdc187',
+                                       blockNumber: 17,
+                                       from: '0x7e449a63fdfd47663a029990bc12ba563baf600d',
+                                       to: '0x3e5ca378f68aac01a5ca427be36107f9fd5066aa',
+                                       gasUsed: 21167,
+                                       cumulativeGasUsed: 21167,
+                                       contractAddress: null,
+                                       logs: [],
+                                       status: true,
+                                       logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+                                       rawLogs: []
+                                     },
+                                     logs: []
+                                   }
+
+                            confirm it in ganache/contracts/faucet will have 2 ether
+       METHOD 2
+                            "truffle console"
+                            web3.eth.sendTransaction({from: accounts[0], to: "0x3E5Ca378F68AaC01a5CA427BE36107F9FD5066AA",data: "0xa26759cb",value: "1000000000000000000"})
+
+                            where:
+                                   from: address of account from which to withdraw
+                                   to: address of smart-contract to which eth need to transfered
+                                   data: "0x"+"first 4 byte (first 8 characters) of "addFund()" in form of Keccak-256"   [link: https://emn178.github.io/online-tools/keccak_256.html]
+                                   value: ether in wei    [link : https://eth-converter.com/]
+realise that when u search a26759cb in /build/contract/Faucet.json the byte code will have it 
+
+---
