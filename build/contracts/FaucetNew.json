@@ -1,0 +1,218 @@
+{
+  "contractName": "FaucetNew",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "addFunds",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.1+commit.c8a2cb62\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[],\"name\":\"addFunds\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/FaucetNewContract.sol\":\"FaucetNew\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/FaucetNewContract.sol\":{\"keccak256\":\"0x450b6842a0bb4e678f79f00a997ac2ee568091b9bb5d4ad6e3fbaa30aacc9fae\",\"urls\":[\"bzzr://1f7a147af707800a7f54e8bc8eccf826365b6ce0e65a78bbf5da9ac06ebd30d5\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b5060808061001e6000396000f3fe6080604052600436106039576000357c010000000000000000000000000000000000000000000000000000000090048063a26759cb14603e575b600080fd5b348015604957600080fd5b5060506052565b005b56fea165627a7a7230582029a8f5582b3164d830776def9391dc049853008643867670797cda5cd31468640029",
+  "deployedBytecode": "0x6080604052600436106039576000357c010000000000000000000000000000000000000000000000000000000090048063a26759cb14603e575b600080fd5b348015604957600080fd5b5060506052565b005b56fea165627a7a7230582029a8f5582b3164d830776def9391dc049853008643867670797cda5cd31468640029",
+  "sourceMap": "69:63:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;69:63:0;;;;;;;",
+  "deployedSourceMap": "69:63:0:-;;;;;;;;;;;;;;;;;;;;;;93:36;;8:9:-1;5:2;;;30:1;27;20:12;5:2;93:36:0;;;:::i;:::-;;;:::o",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\ncontract FaucetNew{\r\n\r\n function addFunds() external {\r\n\r\n }\r\n}",
+  "sourcePath": "C:\\Users\\WebDev\\Documents\\WebDev\\Learn\\Solidity_Ethereum\\basic-understanding\\contracts\\FaucetNewContract.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/FaucetNewContract.sol",
+    "exportedSymbols": {
+      "FaucetNew": [
+        6
+      ]
+    },
+    "id": 7,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:32:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 6,
+        "linearizedBaseContracts": [
+          6
+        ],
+        "name": "FaucetNew",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 4,
+              "nodeType": "Block",
+              "src": "122:7:0",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 5,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addFunds",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "110:2:0"
+            },
+            "returnParameters": {
+              "id": 3,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "122:0:0"
+            },
+            "scope": 6,
+            "src": "93:36:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 7,
+        "src": "69:63:0"
+      }
+    ],
+    "src": "33:99:0"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/FaucetNewContract.sol",
+      "exportedSymbols": {
+        "FaucetNew": [
+          6
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.4",
+            ".22",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "33:32:0"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            6
+          ],
+          "name": "FaucetNew",
+          "scope": 7
+        },
+        "children": [
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "addFunds",
+              "scope": 6,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 2,
+                "name": "ParameterList",
+                "src": "110:2:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 3,
+                "name": "ParameterList",
+                "src": "122:0:0"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4,
+                "name": "Block",
+                "src": "122:7:0"
+              }
+            ],
+            "id": 5,
+            "name": "FunctionDefinition",
+            "src": "93:36:0"
+          }
+        ],
+        "id": 6,
+        "name": "ContractDefinition",
+        "src": "69:63:0"
+      }
+    ],
+    "id": 7,
+    "name": "SourceUnit",
+    "src": "33:99:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.1+commit.c8a2cb62.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2021-12-26T10:40:18.830Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
