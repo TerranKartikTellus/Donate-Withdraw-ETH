@@ -1,5 +1,6 @@
-
-
+making changes in eth state = cost eth
+fetching data from eth = no fee
+----
  Private blockchain anf truffle
  migrating Faucet to blockchain
  website will contain > json file (ABI: application binary interface) 
@@ -107,3 +108,138 @@ now migrate it to blockchain
 realise that when u search a26759cb in /build/contract/Faucet.json the byte code will have it 
 
 ---
+
+types of function
+       1 payable     (used to change state of eth, get some eth as transaction)
+       2 view , pure(used to fetch data from eth network)
+                     view - indicate that function will not alter state of eth in any way
+                     pure - wont event read the storage state
+       example :
+       function fname() external pure returns(uint){      return (2+2);      }
+
+----
+type of call
+       1 write only call = no gass fee
+       2 transactions = generate state changes and require eth
+----
+Add 2+2 using eth network
+
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.4.22 <0.9.0;
+
+contract Faucet{
+ 
+ function addFunds() external payable { }
+
+ function add() external pure returns(uint){
+           return (2+2); 
+ }
+}
+
+"truffle migrate --reset"
+"truffle console"
+"const instance = await Faucet.deployed()"
+"const result await instance.add()"
+result
+              >BN { negative: 0, words: [ 4, <1 empty item> ], length: 1, red: null }
+result.toString()
+              >4
+
+---
+JSON-RPC http calls - helps to talk to a node in eth network
+under truffle console
+"accounts"
+return array of address of account in ganash
+---
+add two number (numbers given while calling function in truffle)
+
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.4.22 <0.9.0;
+
+contract Faucet{
+ 
+ function addFunds() external payable { }
+
+ function addConst() external pure returns(uint){
+           return (2+2); 
+ }
+ function addVar(uint a,uint b) external pure returns(uint){
+           return (a+b); 
+ }
+}
+
+
+
+ "truffle migrate --reset"
+ "truffle console"
+ "const instance = await Faucet.deployed()"
+ "const result = await instance.addVar(2,8)"
+ "result"
+ "result.toString()"
+ ----------
+
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.4.22 <0.9.0;
+
+contract Faucet{
+
+ address[] public funders; 
+ function addFunds() external payable {
+      funders.push(msg.sender);
+  }
+ function getFunders() public view returns(address[] memory){
+      return funders;
+  }
+ 
+ function getFundersAtIndex(uint index) external view returns(address){
+    address[] memory _funders = getFunders();
+    return _funders[index];
+ }
+}
+
+// add Funds to smart-contract from account 0 ,1,2,3
+// show list of address of wallet of people who has funded us using  getFunders()
+
+
+// public function = function be called inside of the smart-contract also
+// external function = function cannot be called inside of the smart-contract and can only be called from outside using truffle instance of smart-contract (const instance = await Faucet.deployed()) 
+// u can use this.theExternalFunction() if there is an emence need to call a external function from withing the smart contract but this will increase the gas fee
+// address[] = is a array type that store address of eth wallets
+//           defined public 
+//           "funders" is the array name
+
+// getFunders() function
+//        external = can be called in truffle console using smart-contract instance
+//        view = indicate that we can viewdata
+//        returns an array that will have address of wallet from "memory" of eth-network where smart-contract is placed
+
+
+// funders.push(msg.sender); = each time addFunds function gets called , address of sender is pushed(appended) into "funder array";
+
+// truffle migrate --reset
+// truffle console
+// const instance = await Faucet.deployed()
+
+// instance.addFunds({ value: "292929292" , from: accounts[0] })
+// instance.addFunds({ value: "292929292" , from: accounts[1] })
+// instance.addFunds({ value: "292929292" , from: accounts[2] })
+// instance.addFunds({ value: "292929292" , from: accounts[3] })
+// instance.addFunds({ value: "292929292" , from: accounts[4] })
+// instance.addFunds({ value: "292929292" , from: accounts[5] })
+
+// instance.getFunders();
+          // [
+          //   '0xA507185e878E238d9315a3DfDa4eC6d9CB739345',
+          //   '0xe4B63CF1c3DC35B097113993d658288FDd43FF30',
+          //   '0xB358DF1732f9AcCd3B84323953204F597e9272B3'
+          // ]
+// instance.getFundersAtIndex(0);
+// '0xA507185e878E238d9315a3DfDa4eC6d9CB739345'
+// here wai worth "292929292" is sent from account 0,1,2,3,4 in GANACHE(test net) to smart-contract, 
+
+// where we are saving address of sender each time we recieve a fund
+
+// add Funds to smart-contract from account 0 ,1,2,3
+// show list of address of wallet of people who has funded us using  getFunders()
+
+-------------
